@@ -1,32 +1,32 @@
 package main
 
 import (
-	"bufio"
+	"fmt"
+	"github.com/remeh/sizedwaitgroup"
 	"net/http"
 	"os"
 	"runtime"
 	"strconv"
 	"strings"
-	"fmt"
-	"github.com/remeh/sizedwaitgroup"
 )
 
-var wg sizedwaitgroup.SizedWaitGroup
 var target string
 
 func main() {
 
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter number of workers: ")
-
-	text, _ := reader.ReadString('\n')
+	//reader := bufio.NewReader(os.Stdin)
+	//fmt.Print("Enter number of workers: ")
+	//text, _ := reader.ReadString('\n')
 	// convert CRLF to LF
-	workers := strings.Replace(text, "\n", "", -1)
+	//workers := strings.Replace(text, "\n", "", -1)
+	workers := os.Args[1]
 	fmt.Println(workers)
 
-	fmt.Println("Please specify your target:")
-	text, _ = reader.ReadString('\n')
-	target = strings.Replace(text, "\n", "", -1)
+	//text, _ = reader.ReadString('\n')
+	//fmt.Println("Please specify your target:")
+	target = os.Args[2]
+	target = strings.Replace(target, "\n", "", -1)
+
 	fmt.Println(target)
 
 	nWorkers, _ := strconv.Atoi(workers)
